@@ -3,7 +3,7 @@
 require 'open-uri'
 require 'nkf'
 
-data = open('https://raw.githubusercontent.com/google/mozc/master/src/data/emoji/emoji_data.tsv').read
+data = URI.open('https://raw.githubusercontent.com/google/mozc/master/src/data/emoji/emoji_data.tsv').read
 result = {}
 data.each_line do |line|
     next if line =~ /^#.*/
@@ -19,13 +19,13 @@ end
 
 open('SKK-JISYO.emoji-ja.utf8', 'w') do |f|
     f << ";; skk-emoji-jisyo-ja\n"
-    open('LICENSE').each_line {|line| f << ";; #{line}" }
+    URI.open('LICENSE').each_line {|line| f << ";; #{line}" }
     f << ";;\n"
     f << ";;\n"
     f << ";; Original emoji_data.tsv from Mozc Project\n"
     f << ";; https://github.com/google/mozc\n"
     f << ";;\n"
-    open('https://raw.githubusercontent.com/google/mozc/master/LICENSE').each_line {|line| f << ";; #{line}" }
+    URI.open('https://raw.githubusercontent.com/google/mozc/master/LICENSE').each_line {|line| f << ";; #{line}" }
     f << ";;\n"
     f << ";; okuri-nasi entries.\n"
     f << result.map{|k,v| "#{k} /#{v.join('/')}/"}.join("\n")
