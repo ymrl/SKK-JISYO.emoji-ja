@@ -28,6 +28,6 @@ open('SKK-JISYO.emoji-ja.utf8', 'w') do |f|
     URI.open('https://raw.githubusercontent.com/google/mozc/master/LICENSE').each_line {|line| f << ";; #{line}" }
     f << ";;\n"
     f << ";; okuri-nasi entries.\n"
-    f << result.map{|k,v| "#{k} /#{v.join('/')}/"}.join("\n")
+    f << result.sort_by(&:first).map{|k,v| "#{k} /#{v.join('/')}/"}.join("\n")
     f << "\n"
 end
