@@ -9,7 +9,7 @@ data.each_line do |line|
     next if line =~ /^#.*/
     arr = line.split(/\t/)
     next if arr[0] == ''
-    arr[6].split(/\s/).each do |yomi|
+    arr[2].split(/\s/).each do |yomi|
         regular_yomi = NKF.nkf('-Z0wW', yomi).downcase
         result[regular_yomi] = [] unless result[regular_yomi]
         result[regular_yomi].push arr[1]
