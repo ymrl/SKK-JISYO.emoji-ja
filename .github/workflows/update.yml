@@ -24,7 +24,7 @@ jobs:
         uses: 1466587594/get-current-time@v2
         id: current-time
       - name: Commit changes
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
           message: 'Update jisyo at ${{ github.event_name }} / ${{ steps.current-time.outputs.ISOTime }}'
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
       - name: Deploy gh-pages
